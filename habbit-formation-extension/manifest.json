@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Dynamic Wallpaper Extension",
+  "version": "1.0",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
+  "description": "Fetch and set wallpapers from a backend service.",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "storage",
+    "http://*/*"
+  ],
+  "content_security_policy": "script-src 'self'; object-src 'self'; connect-src *; img-src *",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Dynamic Wallpaper Extension",
+    "default_popup": "popup.html"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  }
+}
