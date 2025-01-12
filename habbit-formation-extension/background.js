@@ -2,6 +2,33 @@ const browser = window.browser || window.chrome; // 兼容不同浏览器
 
 const BASE_API_URL = "http://172.25.1.22:8080/"; // 替换为你的服务URL
 
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "getExtensionData") {
+    sendResponse({ data: "这是来自后台脚本的数据" });
+  }
+});
+
+// 监听用户切换标签页的事件
+browser.tabs.onActivated.addListener(async (activeInfo) => {
+  try {
+    const tab = await browser.tabs.get(activeInfo.tabId);
+    if (tab.url) {
+      console.log("Switched to tab:", tab.url);
+
+      // 向当前标签页的 content-script.js 发送消息
+      browser.tabs.sendMessage(tab.id, {
+        type: "TAB_ACTIVATED",
+        url: tab.url,
+      }).catch((err) => {
+        console.error("Failed to send message to content script:", err);
+      });
+    }
+  } catch (error) {
+    console.error("Error handling tab activation:", error);
+  }
+});
+
+
 browser.runtime.onInstalled.addListener(() => {
   console.log("Extension installed");
 
