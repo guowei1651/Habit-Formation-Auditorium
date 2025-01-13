@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Habit Formation Extension",
+  "name": "Habit Formation",
   "version": "1.0",
   "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
   "description": "Fetch and set wallpapers from a backend service.",
