@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Habit Formation</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../style/bootstrap.min.css">
+  <style>
+    .position-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f9f9f9, #eaeaea);
+      overflow: hidden;
+    }
+
+    .position-marker {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .position-marker:hover {
+      background: #bbb;
+    }
+
+    .position-marker.selected {
+      background: #007bff;
+    }
+
+    .top-left {
+      top: 10px;
+      left: 10px;
+    }
+
+    .top-right {
+      top: 10px;
+      right: 10px;
+    }
+
+    .bottom-left {
+      bottom: 10px;
+      left: 10px;
+    }
+
+    .bottom-right {
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .center {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="container bg-white rounded shadow p-4">
+    <div id="loginForm" class="border rounded p-4 bg-light shadow-sm">
+      <h4 class="text-center mb-4">登录到您的账户</h4>
+      <form>
+        <div class="form-group">
+          <label for="username">用户名</label>
+          <input type="text" id="username" class="form-control" placeholder="请输入用户名" required>
+        </div>
+        <div class="form-group">
+          <label for="password">密码</label>
+          <input type="password" id="password" class="form-control" placeholder="请输入密码" required>
+        </div>
+        <div id="error" class="text-danger mb-3" style="display: none;"></div>
+        <button type="button" id="loginButton" class="btn btn-primary btn-block">登录</button>
+      </form>
+      <div class="text-center mt-3">
+        <a id="forgetPassword" href="#" class="text-muted">忘记密码?</a>
+      </div>
+    </div>
+    <div id="tabContainer" class="mt-4" style="display: none;">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="carousel-tab" data-toggle="tab" href="#carousel" role="tab"
+            aria-controls="carousel" aria-selected="true">轮播</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location"
+            aria-selected="false">位置</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent" style="min-height: 300px;">
+        <div class="tab-pane fade show active" id="carousel" role="tabpanel" aria-labelledby="carousel-tab">
+          <div id="tabContainer" class="container bg-white rounded shadow p-2">
+            <table class="table table-striped mt-3">
+              <thead>
+                <tr>
+                  <th scope="col">序号</th>
+                  <th scope="col">标题</th>
+                  <th scope="col">图片</th>
+                </tr>
+              </thead>
+              <tbody id="carouselTable">
+                <tr>
+                  <td>1</td>
+                  <td>标题1</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>标题2</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
+          <div id="tabContainer" class="container bg-white rounded shadow p-2">
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="location" role="tabpanel" aria-labelledby="location-tab">
+                <div class="position-container mt-3">
+                  <div class="position-marker top-left" data-position="top-left">左上</div>
+                  <div class="position-marker top-right" data-position="top-right">右上</div>
+                  <div class="position-marker bottom-left" data-position="bottom-left">左下</div>
+                  <div class="position-marker bottom-right" data-position="bottom-right">右下</div>
+                  <div class="position-marker center" data-position="center">中央</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="./common/jquery-3.6.0.min.js"></script>
+  <script src="./common/popper.min.js"></script>
+  <script src="./common/bootstrap.min.js"></script>
+  <script src="./popup.js"></script>
+</body>
+
+</html>

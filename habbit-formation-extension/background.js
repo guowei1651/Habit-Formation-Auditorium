@@ -42,7 +42,7 @@ browser.runtime.onInstalled.addListener(() => {
   }
 
   async function updateCarousel() {
-    const carouselId = await getCarouselId();
+    const carouselId = await ();
     // 请求时传递用户标识作为参数
     const response = await fetch(BASE_API_URL+`carousel/${carouselId}/carouselItems`);
     if (!response.ok) {
