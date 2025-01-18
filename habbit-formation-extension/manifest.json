@@ -2,8 +2,8 @@
   "manifest_version": 2,
   "name": "Habit Formation",
   "version": "1.0",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
-  "description": "Fetch and set wallpapers from a backend service.",
+  "homepage_url": "https://hf.com",
+  "description": "Habit visualization to promote habit formation",
   "permissions": [
     "contextMenus",
     "activeTab",
@@ -20,11 +20,11 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content-script.js"]
+      "js": ["./content/element-process.js", "./content/content-script.js"]
     }
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["./common/croner.js", "background.js"],
     "persistent": false
   }
 }
