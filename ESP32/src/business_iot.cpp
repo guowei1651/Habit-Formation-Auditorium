@@ -1,9 +1,12 @@
-#include "../include/iot.h"
+#include "../include/business_iot.h"
 
 IoTClient::IoTClient() : _state(INIT), _lastHeartbeat(0) {}
 
 void IoTClient::begin(const char* serverUrl, const char* deviceId) {
     _serverUrl = serverUrl;
+    if (nullptr == serverUrl) {
+        
+    }
     _deviceId = deviceId;
     setState(REGISTERING);
 }

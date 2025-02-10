@@ -13,15 +13,17 @@ public:
     bool connectStoredWiFi();
     void startConfigPortal();
     bool isConnected();
+    bool confirmIsConnected(); // 确认网络的连接状态
     
 private:
     ConfigManager& _configManager;
-    Display& _display
+    Display& _display;
     WebServer _server;
     void handleRoot();
     void handleSave();
+    void handleScan();
     void sendHtmlPage();
-    const char* AP_SSID = "Habit_FORMATION";
+    const char* AP_SSID = "HABIT_FORMATION";
     const int WIFI_TIMEOUT = 10000; // 10秒超时
 };
 

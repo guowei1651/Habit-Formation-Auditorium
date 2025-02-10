@@ -4,6 +4,8 @@
 
 #include "../include/esp32_board.h"
 
+ESP32Board esp32;
+
 String bytesToHex(uint8_t* bytes, int len) {
     String result = "";
     for (int i = 0; i < len; i++) {

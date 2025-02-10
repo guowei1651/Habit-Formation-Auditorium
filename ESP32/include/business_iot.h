@@ -5,10 +5,6 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
-struct IoTDevice {
-  IoTClient iotClient;
-};
-
 enum DeviceState {
     INIT,           // 初始化状态
     REGISTERING,    // 注册中
@@ -41,6 +37,10 @@ private:
     void setState(DeviceState newState);
     void handleState();
     bool sendRequest(const char* endpoint, const char* method, const String& payload);
+};
+
+struct IoTDevice {
+  IoTClient iotClient;
 };
 
 #endif

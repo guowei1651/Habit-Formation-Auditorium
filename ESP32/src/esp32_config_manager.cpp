@@ -6,24 +6,6 @@ void ConfigManager::begin() {
     preferences.begin(NVS_NAMESPACE, false);
 }
 
-bool ConfigManager::saveWiFiConfig(const char* ssid, const char* password) {
-    if (strlen(ssid) > 0 && strlen(password) > 0) {
-        preferences.putString("wifi_ssid", ssid);
-        preferences.putString("wifi_pass", password);
-        return true;
-    }
-    return false;
-}
-
-bool ConfigManager::saveAPIConfig(const char* api1_url, const char* api2_url) {
-    if (strlen(api1_url) > 0 && strlen(api2_url) > 0) {
-        preferences.putString("api1_url", api1_url);
-        preferences.putString("api2_url", api2_url);
-        return true;
-    }
-    return false;
-}
-
 bool ConfigManager::setValue(const char* key, const String& value) {
     if (configCache[key] != value) {
         configCache[key] = value;

@@ -18,4 +18,8 @@ const int BUTTON3_PIN = 39;
 const int SDA_PIN = 21;
 const int SCL_PIN = 22;
 
+// battery pin
+const int BATTERY_PIN = 36;
+const int WEAKIO_PIN = 25;
+
 #endif
