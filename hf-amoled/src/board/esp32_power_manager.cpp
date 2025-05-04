@@ -14,9 +14,8 @@ PowerManager::PowerManager() : adc_enabled(false), expander(nullptr) {
 }
 
 void PowerManager::begin() {
-    Wire.begin(IIC_SDA, IIC_SCL);
     // 初始化PMU
-    if (!pmu->begin(Wire, AXP2101_SLAVE_ADDRESS, sda, scl)) {
+    if (!pmu->begin(Wire, AXP2101_SLAVE_ADDRESS, IIC_SDA, IIC_SCL)) {
         ESP32_LOGI(TAG, "PMU initialization failed!");
         return;
     }

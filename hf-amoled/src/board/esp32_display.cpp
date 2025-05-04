@@ -8,18 +8,22 @@ bool backlight_on = true;
 Display::Display(DataBus *bus) {
     Arduino_DataBus *dataBus = bus->getBus();
     this->bus = bus;
-    Arduino_GFX *gfx = new Arduino_SH8601(
-        dataBus, -1, 0, false, LCD_WIDTH, LCD_HEIGHT
-    );
+    ESP32_LOGI(tag, "Display bus : %p", dataBus);
+    Arduino_GFX *gfx = new Arduino_SH8601(bus->getBus(), (int8_t) -1 /* RST */, (int8_t) 0 /* rotation */, false /* IPS */, (int16_t) LCD_WIDTH, (int16_t) LCD_HEIGHT);
     this->gfx = gfx;
+    ESP32_LOGI(tag, "Display gfx : %p", gfx);
 }
 
 void Display::begin() {
     Arduino_GFX *gfx = this->gfx;
     if (!gfx->begin()) {
         ESP32_LOGI(tag, "Display init failed!");
+        delay(5000);
+        ESP32_LOGI(tag, "Display init failed!");
         return;
     }
+    gfx->fillScreen(WHITE);
+    delay(1000);
 }
 
 // 切换亮暗
@@ -38,4 +42,4 @@ void Display::toggleBacklight() {
       }
     }
     backlight_on = !backlight_on;
-  }
+}

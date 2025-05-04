@@ -1,5 +1,7 @@
 #include "business/business_display_clock.h"
 
+#define TAG "Clock"
+
 #define SIXTIETH 0.016666667
 #define TWELFTH 0.08333333
 #define SIXTIETH_RADIAN 0.10471976
@@ -10,23 +12,27 @@ Clock::Clock(Display *display) : _display(display), isDisplayOn(true) {
 }
 
 void Clock::begin() {
+    ESP32_LOGI(TAG, "Initializing clock...");
     Arduino_GFX *gfx = _display->getGFX();
 
     // 初始化显示屏参数
     w = gfx->width();
     h = gfx->height();
     center = (w < h) ? w/2 : h/2;
-    
+    ESP32_LOGI(TAG, "Display size: %d x %d, Center: %d", w, h, center);
+
     hHandLen = center * 3 / 8;
     mHandLen = center * 2 / 3;
     sHandLen = center * 5 / 6;
     markLen = sHandLen / 6;
 
     // 初始显示
+    ESP32_LOGI(TAG, "Filling screen with background color...");
     gfx->fillScreen(BACKGROUND);
     drawClockFace();
     
     // 设置初始时间
+    ESP32_LOGI(TAG, "Setting initial time...");
     hh = 12;
     mm = 0;
     ss = 0;
@@ -36,6 +42,8 @@ void Clock::begin() {
 void Clock::update() {
     if (!isDisplayOn) return;
     
+    ESP32_LOGI(TAG, "Updating clock...");
+
     unsigned long now = millis();
     if (now >= targetTime) {
         targetTime += 1000;
